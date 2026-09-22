@@ -36,10 +36,14 @@
     onActivation.extraFlags = [ "--force" ];
     brews = [
       "herdr"
+      "uv"
     ];
     casks = [
       "wezterm"
       "claude-code"
+      "codex"
+      "grok-build"
+      "tigervnc"
     ];
   };
 }

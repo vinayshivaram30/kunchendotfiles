@@ -16,11 +16,14 @@ in
     jq        # json on the command line
     lazygit
     neovim
+    nodejs_22  # the Pi agent CLI is a Node program
     # the font everything renders in
     nerd-fonts.hack
   ];
   fonts.fontconfig.enable = true;
   home.sessionVariables.EDITOR = "nvim";
+  # Pi installs its agent CLI here, outside the Nix store.
+  home.sessionPath = [ "$HOME/.pi/agent/bin" ];
 
   programs.zsh = {
     enable = true;
@@ -36,10 +39,18 @@ in
       pull = "git pull";
       m = "git switch main";
       cc = "claude --dangerously-skip-permissions";
-      co = "codex --full-auto";
+      co = "codex --dangerously-bypass-approvals-and-sandbox";
+      c = "clear";
     };
   };
 
+  programs.git = {
+    enable = true;
+    settings.user = {
+      name = "vinayshivaram30";
+      email = "vinu252@gmail.com";
+    };
+  };
   programs.starship = {
     enable = true;
     settings = {
