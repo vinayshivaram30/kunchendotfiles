@@ -14,5 +14,8 @@
   "packages": [
     "npm:pi-web-access@0.14.0",
     "npm:@ryan_nookpi/pi-extension-codex-fast-mode@0.2.6"
-  ]
+  ],
+  "lastChangelogVersion": "0.87.1",
+  "defaultProvider": "google",
+  "defaultModel": "gemini-3.1-pro-preview"
 }

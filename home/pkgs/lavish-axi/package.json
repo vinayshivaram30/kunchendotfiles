@@ -1,0 +1,5 @@
+{
+  "name": "lavish-axi-env",
+  "private": true,
+  "dependencies": { "lavish-axi": "0.1.77" }
+}

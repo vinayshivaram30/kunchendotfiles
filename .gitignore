@@ -17,3 +17,16 @@ result-*
 
 # no-mistakes local validation state - never commit in this public repo
 .no-mistakes/
+
+# herdr per-session runtime state (logs, plugin locks) stays local
+home/.config/herdr/sessions/
+home/.config/herdr/.plugins.lock
+
+# Fleet SSH hosts: private addresses and key names stay on the machine
+# Host reachability tests embed those same addresses
+tests/mac-mini-ssh.test.sh
+tests/ubuntu-ssh.test.sh
+tests/windows-wsl-ssh.test.sh
+
+# Fleet SSH hosts live here, out of the store and out of git
+home/ssh/

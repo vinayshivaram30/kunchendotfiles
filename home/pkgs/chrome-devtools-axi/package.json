@@ -1,0 +1,5 @@
+{
+  "name": "chrome-devtools-axi-env",
+  "private": true,
+  "dependencies": { "chrome-devtools-axi": "0.1.34" }
+}
