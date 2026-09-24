@@ -40,7 +40,7 @@
     ];
     casks = [
       "wezterm"
-      "claude-code"
+      "claude-code@latest"
       "codex"
       "grok-build"
       "tigervnc"
