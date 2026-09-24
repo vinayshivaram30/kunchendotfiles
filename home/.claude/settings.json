@@ -28,8 +28,13 @@
       }
     }
   },
+  "outputStyle": "Concise",
   "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
   "theme": "dark",
-  "outputStyle": "Concise"
+  "modelSettings": {
+    "claude-opus-5": {
+      "effortLevel": "medium"
+    }
+  }
 }
