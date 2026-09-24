@@ -35,8 +35,8 @@ let
   };
   treehouse = releaseBin {
     pname = "treehouse";
-    version = "2.0.0";
-    hash = "sha256-ZgIvNusMedbyQgJfJmt4KslHs6KBcAXxNCXL0Yh08fk=";
+    version = "2.3.0";
+    hash = "sha256-HLCbz6gwtO7F5UvuqnFYmtucXYKFc92g9RUOLYDPE9U=";
   };
 
   npmTarball = { name, version, hash }: pkgs.fetchurl {
@@ -127,8 +127,8 @@ let
   };
   quota-axi = npmCli {
     pname = "quota-axi";
-    version = "0.1.51";
-    hash = "sha256-6JvIXJXnYGFbzX1Goc/OMEDz2pFfcOWmmm+mbltdsas=";
+    version = "0.1.53";
+    hash = "sha256-/33XgK0jHN85uHe/W/RR5JuZ8AFm2n6LFATVDT7L/nk=";
     deps = axiDeps // {
       "undici"         = npmTarball { name = "undici";         version = "6.28.0"; hash = "sha256-Mqhsb6KP1IuRVVUEjAW703rTVFfZ6UWVODGkN0yIapw="; };
       "proxy-from-env" = npmTarball { name = "proxy-from-env"; version = "2.1.0";  hash = "sha256-6cUtvx44IxnV2gC42WSAWFm36xQkRQ4EnRJ0PX4Z/Jo="; };
@@ -154,9 +154,9 @@ let
   };
   lavish-axi = pkgs.buildNpmPackage {
     pname = "lavish-axi";
-    version = "0.1.77";
+    version = "0.1.78";
     src = ./home/pkgs/lavish-axi;
-    npmDepsHash = "sha256-/THxjZnIwd7xB/XAxKSiR+Dve0stKIVA81+/qKqwfJc=";
+    npmDepsHash = "sha256-51vGTWPNQpYih+JAUujvAKEoDlpPwAEuvRLzGn5jZ74=";
     dontNpmBuild = true;
     nativeBuildInputs = [ pkgs.makeWrapper ];
     installPhase = ''
