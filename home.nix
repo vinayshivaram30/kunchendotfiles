@@ -30,13 +30,13 @@ let
 
   no-mistakes = releaseBin {
     pname = "no-mistakes";
-    version = "1.79.0";
-    hash = "sha256-gML0ubPQHLXWDKKUImtB1zMUCOblzwQApXbPPsJRZtc=";
+    version = "1.84.0";
+    hash = "sha256-Ll+DgwOrcn7czRpgpINAaAJGBsaK59l/3A/e7Ne9TZA=";
   };
   treehouse = releaseBin {
     pname = "treehouse";
-    version = "2.3.0";
-    hash = "sha256-HLCbz6gwtO7F5UvuqnFYmtucXYKFc92g9RUOLYDPE9U=";
+    version = "3.1.0";
+    hash = "sha256-549S8HjZD/qFidoWT8hzBgIMVSR3YnOtBArwQSfdkd8=";
   };
 
   npmTarball = { name, version, hash }: pkgs.fetchurl {
@@ -78,14 +78,14 @@ let
   #   nix store prefetch-file --json https://registry.npmjs.org/<name>/-/<name>-<ver>.tgz
   gnhf =
     let
-      gnhfSrc   = npmTarball { name = "gnhf";      version = "0.1.49";  hash = "sha256-SIKglBLe7UVUhp3CC8ZM6d+9ukqSJQbRNtSkFJ18Abs="; };
+      gnhfSrc   = npmTarball { name = "gnhf";      version = "0.1.50";  hash = "sha256-dzAXKcfQsBrMS3oJ3Jh4sfIRzmDA8llRO77XE8w3o3A="; };
       commander = npmTarball { name = "commander"; version = "14.0.3";  hash = "sha256-WElwPFAODzJOsBNA2L2h+exI/De7e+lxLrDdUqrZL2w="; };
       js-yaml   = npmTarball { name = "js-yaml";   version = "4.3.0";   hash = "sha256-hZTuNElt0uQeyTT9IChD3Jk76astfV1HV5FGli+9+uY="; };
       argparse  = npmTarball { name = "argparse";  version = "2.0.1";   hash = "sha256-J5A4R/yCFeb8WjPoFJD3urpmQD+KreM3cbmIzKCXcow="; };
     in
     pkgs.stdenvNoCC.mkDerivation {
       pname = "gnhf";
-      version = "0.1.49";
+      version = "0.1.50";
       dontUnpack = true;
       nativeBuildInputs = [ pkgs.makeWrapper ];
       installPhase = ''
@@ -107,8 +107,8 @@ let
   # backpass ships with no runtime dependencies, so the bare tarball is the closure.
   backpass = npmCli {
     pname = "backpass";
-    version = "0.1.26";
-    hash = "sha256-Nz0PeYAFbPD9gprgBHooHFVTD3uZv/10XS7dbgmL2fM=";
+    version = "0.1.30";
+    hash = "sha256-oagKgScOcBMzU13G5BgDDECLMvJfyAx/VLUHWPm4NKY=";
     deps = {};
     entry = "bin/backpass.js";
   };
@@ -127,8 +127,8 @@ let
   };
   quota-axi = npmCli {
     pname = "quota-axi";
-    version = "0.1.53";
-    hash = "sha256-/33XgK0jHN85uHe/W/RR5JuZ8AFm2n6LFATVDT7L/nk=";
+    version = "0.1.55";
+    hash = "sha256-0hgvH5/v4LQtS4rggaDpv61v/63SzEpCQRnLpiu4YTE=";
     deps = axiDeps // {
       "undici"         = npmTarball { name = "undici";         version = "6.28.0"; hash = "sha256-Mqhsb6KP1IuRVVUEjAW703rTVFfZ6UWVODGkN0yIapw="; };
       "proxy-from-env" = npmTarball { name = "proxy-from-env"; version = "2.1.0";  hash = "sha256-6cUtvx44IxnV2gC42WSAWFm36xQkRQ4EnRJ0PX4Z/Jo="; };
@@ -137,9 +137,9 @@ let
   # npm pins the browser tool's larger dependency closure in its lockfile.
   chrome-devtools-axi = pkgs.buildNpmPackage {
     pname = "chrome-devtools-axi";
-    version = "0.1.34";
+    version = "0.1.35";
     src = ./home/pkgs/chrome-devtools-axi;
-    npmDepsHash = "sha256-TdBIbSndxHg1FDlYkeNVSVWRM+C/CPXJKJ36dMWzDaA=";
+    npmDepsHash = "sha256-ELJzTNJ42Qnn7iz86c9RgS2sD/ElZFZnbwBLZoO9DYY=";
     dontNpmBuild = true;
     nativeBuildInputs = [ pkgs.makeWrapper ];
     installPhase = ''
@@ -154,9 +154,9 @@ let
   };
   lavish-axi = pkgs.buildNpmPackage {
     pname = "lavish-axi";
-    version = "0.1.78";
+    version = "0.1.80";
     src = ./home/pkgs/lavish-axi;
-    npmDepsHash = "sha256-51vGTWPNQpYih+JAUujvAKEoDlpPwAEuvRLzGn5jZ74=";
+    npmDepsHash = "sha256-LKlzL6lbLJXql8Odt8rw6enyW2tdy4QvWsTzSZQXEZ4=";
     dontNpmBuild = true;
     nativeBuildInputs = [ pkgs.makeWrapper ];
     installPhase = ''

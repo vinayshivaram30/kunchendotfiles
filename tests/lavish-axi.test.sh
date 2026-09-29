@@ -13,6 +13,6 @@ PACKAGE=$(nix build --impure --no-link --print-out-paths --expr '
   in if builtins.length matches == 1 then builtins.head matches
      else throw "Expected one declared lavish-axi package"
 ')
-"$PACKAGE/bin/lavish-axi" --version | grep -F '0.1.77'
+"$PACKAGE/bin/lavish-axi" --version | grep -F "${PACKAGE##*-}"
 "$PACKAGE/bin/lavish-axi" --help >/dev/null
 printf 'ok - declared Lavish package builds and CLI starts: %s\n' "$PACKAGE"
