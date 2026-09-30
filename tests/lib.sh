@@ -26,23 +26,15 @@ pass() {
 
 # --- self-cleaning temp root -------------------------------------------------
 
-DOTFILES_TEST_CLEANUP_DIRS=()
-
-dotfiles_test_cleanup() {
-  local d
-  for d in "${DOTFILES_TEST_CLEANUP_DIRS[@]:-}"; do
-    [ -n "$d" ] && rm -rf "$d"
-  done
-}
+# Callers take dirs via command substitution, which runs in a subshell, so the
+# cleanup trap must belong to the sourcing shell: set it here, once, and keep
+# every dir under one root it removes.
+DOTFILES_TEST_TMP=$(mktemp -d "${TMPDIR:-/tmp}/dotfiles-test.XXXXXX")
+dotfiles_test_cleanup() { rm -rf "$DOTFILES_TEST_TMP"; }
+trap dotfiles_test_cleanup EXIT
 
 dotfiles_test_tmproot() {
-  local prefix=${1:-dotfiles-test} root
-  root=$(mktemp -d "${TMPDIR:-/tmp}/${prefix}.XXXXXX")
-  if [ "${#DOTFILES_TEST_CLEANUP_DIRS[@]}" -eq 0 ]; then
-    trap dotfiles_test_cleanup EXIT
-  fi
-  DOTFILES_TEST_CLEANUP_DIRS+=("$root")
-  printf '%s\n' "$root"
+  mktemp -d "$DOTFILES_TEST_TMP/${1:-dotfiles-test}.XXXXXX"
 }
 
 # --- assertions ---------------------------------------------------------------
