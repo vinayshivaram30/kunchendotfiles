@@ -33,6 +33,7 @@
     enable = true;
     onActivation.cleanup = "zap";  # remove anything not listed here
     onActivation.autoUpdate = true;
+    onActivation.upgrade = true;  # take new formula/cask releases on every rebuild
     onActivation.extraFlags = [ "--force" ];
     brews = [
       "herdr"

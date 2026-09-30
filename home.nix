@@ -3,8 +3,8 @@
 let
   dotfiles = "${config.home.homeDirectory}/.dotfiles";
 
-  # Every pin below is bumped by ./update.sh, which rebuild.sh runs when the
-  # last successful update is more than 24h old.
+  # Every pin below is bumped by ./update.sh: daily via the dotfiles-update
+  # launchd agent, and from rebuild.sh when that has not succeeded in 24h.
 
   # kunchenguid single-binary CLIs shipped as GitHub release tarballs
   # (no brew/nixpkgs pkg). Each tarball holds one binary named after the tool.
@@ -172,4 +172,16 @@ in
   home.file.".ssh/config".source =
     config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/ssh/config";
 
+  # Daily at 5am (or on wake if asleep then): bump every pin, build, test and
+  # commit, without activating. ./rebuild.sh applies the result.
+  launchd.agents.dotfiles-update = {
+    enable = true;
+    config = {
+      ProgramArguments = [ "${dotfiles}/update.sh" ];
+      StartCalendarInterval = [ { Hour = 5; Minute = 0; } ];
+      StandardOutPath = "${config.home.homeDirectory}/Library/Logs/dotfiles-update.log";
+      StandardErrorPath = "${config.home.homeDirectory}/Library/Logs/dotfiles-update.log";
+      EnvironmentVariables.PATH = "/nix/var/nix/profiles/default/bin:/etc/profiles/per-user/${user}/bin:/usr/bin:/bin";
+    };
+  };
 }

@@ -136,7 +136,7 @@ If you don't use it, just remove it from `brews` in your copy.
 - `configuration.nix` - system-level config: macOS defaults, Homebrew.
 - `home.nix` - user-level config: shell, packages, prompt, and the symlinks described below.
 - `rebuild.sh` - re-applies the config after the first switch. If the last successful `update.sh` run is more than 24h old, it runs that first; a failed update prints a warning and the switch keeps the current pins.
-- `update.sh` - pulls `upstream` (kunchenguid/dotfiles), runs `nix flake update`, and bumps the kunchenguid release binaries (`home/pkgs/releases.json`), every npm CLI (`home/pkgs/<tool>/` lockfiles) and the Pi packages to latest. It then builds and runs `tests/*.test.sh`, commits only those pin files on success, and rolls back on failure. It never activates anything.
+- `update.sh` - pulls `upstream` (kunchenguid/dotfiles), runs `nix flake update`, and bumps the kunchenguid release binaries (`home/pkgs/releases.json`), every npm CLI (`home/pkgs/<tool>/` lockfiles) and the Pi packages to latest. It then builds and runs `tests/*.test.sh`, commits only those pin files on success, and rolls back on failure. It never activates anything. The `dotfiles-update` launchd agent runs it daily at 5am (on wake if the Mac was asleep), logging to `~/Library/Logs/dotfiles-update.log`. `rebuild.sh` also upgrades Homebrew formulae and casks.
   Run this every time you make a change.
 - `home/` - the actual config files that get symlinked into place; the sections below explain the shared symlink model and Pi's narrower selective setup.
 
