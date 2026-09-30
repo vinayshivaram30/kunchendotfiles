@@ -31,6 +31,7 @@ case "$1" in
 esac
 EOF
 chmod +x "$STUBS"/*
+unset XDG_STATE_HOME
 export PATH="$STUBS:$PATH" DOTFILES_UPDATE_SHELL=1 GIT_AUTHOR_NAME=t GIT_AUTHOR_EMAIL=t@example.invalid \
   GIT_COMMITTER_NAME=t GIT_COMMITTER_EMAIL=t@example.invalid
 
