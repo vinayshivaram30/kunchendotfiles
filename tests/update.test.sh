@@ -50,6 +50,7 @@ fixture() {
   echo '{"dependencies":{"tool":"1.0.0"}}' > "$repo/home/pkgs/tool/package.json"
   echo '{"packages":["npm:@scope/pi-ext@1.0.0"]}' > "$repo/home/.pi/agent/settings.json"
   echo clean > "$repo/notes.txt"
+  echo 'touch "$HOME/committed-test-ran"' > "$repo/tests/committed.test.sh"
   git -C "$repo" add -A && git -C "$repo" commit -qm fixture
   echo "user edit" > "$repo/notes.txt"
 }
@@ -57,7 +58,10 @@ fixture() {
 # --- success: pulls upstream, bumps every pin, commits only pin files --------
 R="$TMP/ok"; fixture "$R" ok
 export HOME="$TMP/home-ok"; mkdir -p "$HOME"
-"$R/update.sh" >/dev/null 2>&1 || fail "update.sh succeeds when build and tests pass"
+echo 'exit 1' > "$R/tests/wip.test.sh"  # another session's uncommitted test
+"$R/update.sh" >/dev/null 2>&1 || fail "update.sh succeeds when build and committed tests pass"
+[ -f "$HOME/committed-test-ran" ] || fail "update.sh runs committed tests"
+rm "$R/tests/wip.test.sh"
 log=$(git -C "$R" log --format=%s)
 assert_contains "$log" "upstream change" "upstream commits are merged"
 assert_contains "$log" "chore: update pinned dependencies" "pin bumps are committed"

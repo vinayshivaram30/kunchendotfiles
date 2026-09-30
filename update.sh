@@ -72,8 +72,9 @@ for spec in $(jq -r '.packages[] | select(startswith("npm:"))' "$S"); do
 done
 
 nix build .#darwinConfigurations.mac.system --no-link
-shopt -s nullglob
-for t in tests/*.test.sh; do bash "$t"; done
+# Committed tests only: another session's work-in-progress test must not
+# block updates.
+for t in $(git ls-files 'tests/*.test.sh'); do bash "$t"; done
 
 git add -- "${PINS[@]}"
 git diff --cached --quiet || git commit -q -m "chore: update pinned dependencies" -- "${PINS[@]}"
