@@ -1,0 +1,7 @@
+{
+  "name": "gh-axi-env",
+  "private": true,
+  "dependencies": {
+    "gh-axi": "0.1.35"
+  }
+}

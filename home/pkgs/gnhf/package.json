@@ -1,0 +1,7 @@
+{
+  "name": "gnhf-env",
+  "private": true,
+  "dependencies": {
+    "gnhf": "0.1.50"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "name": "backpass-env",
+  "private": true,
+  "dependencies": {
+    "backpass": "0.1.30"
+  }
+}

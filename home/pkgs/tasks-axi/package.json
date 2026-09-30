@@ -1,0 +1,7 @@
+{
+  "name": "tasks-axi-env",
+  "private": true,
+  "dependencies": {
+    "tasks-axi": "0.2.6"
+  }
+}

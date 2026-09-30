@@ -1,0 +1,7 @@
+{
+  "name": "quota-axi-env",
+  "private": true,
+  "dependencies": {
+    "quota-axi": "0.1.55"
+  }
+}
